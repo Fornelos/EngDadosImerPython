@@ -17,7 +17,8 @@ try:
     for cor , rgb in lista_cor:
       if cor == busca_cor:
        print('Valores RGB para a cor {}: Red={}, Green={}, Blue={}'.format(cor,rgb[0],rgb[1],rgb[2]))
-
+      else:
+        print('A cor {} não foi encontrada na lista.'.format(busca_cor))
 except:
     print("Erro!")
 ############################################################
