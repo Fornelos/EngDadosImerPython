@@ -13,7 +13,7 @@ try:
         blue  = int(input('Informe a cor BLUE do RGB: ').strip())
         lista_cor.append((nome_cor,(red,green,blue)))
     busca_cor = input('Informe o nome a ser pesquisada: ').strip().capitalize()
-    print(lista_cor)
+    #print(lista_cor)
     for cor , rgb in lista_cor:
       if cor == busca_cor:
        print('Valores RGB para a cor {}: Red={}, Green={}, Blue={}'.format(cor,rgb[0],rgb[1],rgb[2]))
