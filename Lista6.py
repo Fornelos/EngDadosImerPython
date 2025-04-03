@@ -2,6 +2,7 @@
 #ENGENHARIA E ANALISE DE DADOS 2025.1
 #THIAGO FORNELOS DE ALBUQUERQUE
 ######### QUESTAO 1 #########################################
+import os
 
 lista_cor = []
 try:
@@ -147,7 +148,7 @@ print('Os valores do dicionário numeros_maria são {}'.format(numeros_maria))
 ############################################################
 
 ######### QUESTAO 7 #########################################
-import os
+
 dict_agenda ={}
 
 def incluirAlterarContato():
@@ -220,7 +221,31 @@ while True:
 ############################################################
     
 ######### QUESTAO 8 #########################################
-    
+estoque_produto = {}
+menu_estoque ="""
+    ############################
+      CONTROLE DE ESTOQUE v1.0
+    ############################
+      
+    1. Incluir produto
+    2. Excluir produto
+    3. Atualizar estoque
+    4. Exibir todo o estoque
+    5. Calcular valor total do estoque
+    6. Sair
+    """
+
+while True:
+    print(menu_estoque)
+    op1 = int(input('Informe a opção: '))
+    if op == 1:
+       pass
+    elif op == 2:
+        pass
+    elif op == 3:
+        pass
+    else:
+        pass
 ############################################################
  
 
