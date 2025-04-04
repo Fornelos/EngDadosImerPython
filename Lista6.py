@@ -325,13 +325,72 @@ while True:
 ############################################################
     
 ######### QUESTAO 9 #########################################
+conta_banco = {}
+TEMPO_SLEEP = 2
+def adicionar_conta(conta):
+    if conta in conta_banco:
+        verifica_conta(conta)
+    else:
+        nome_titular = input('Informe o nome do titular  da conta {} :'.format(conta)).strip()
+        saldo = float(input('Informe o saldo da conta {} :'.format(conta)).strip())
+        conta_banco[conta] = {'Nome': nome_titular, 'Saldo':saldo}
+        print('Conta criada com sucesso.')
+        sleep()
+    return
+
+def verifica_conta(conta):
+    print('Conta {} existente, você sera redirecionado ao menu para outras operações'.format(conta))
+    sleep()
+
+def realizar_saque(conta):
+    pass
+
+def realizar_deposito(conta):
+    pass
+
+def consultar_saldo(conta):
+    pass
+
+def sair():
+    print('Programa finalizado.')
+    sleep()
+    print(conta_banco)
+
+def limpartela():
+    os.system('cls')
+
+def sleep():
+    time.sleep(TEMPO_SLEEP)
+    limpartela()
 
 
+menu_estoque ="""
+    #################################
+    CONTROLE DE CONTAS BANCARIAS v1.0
+    #################################
+      
+    1. Criar uma nova conta
+    2. Consultar o saldo de uma conta específica
+    3. Realizar um saque em uma conta
+    4. Realizar um depósito em uma conta
+    5. Sair do programa
+    """
+while True:
+    print(menu_estoque)
+    op = int(input('Informe a opção: '))
 
-
-
-
-
-
-
-
+    if op == 1:
+        conta = input('\n\nInforme o número da conta: ').strip().upper()
+        adicionar_conta(conta)
+    elif op == 2:
+        conta = input('\n\nInforme o número da conta: ').strip().upper()
+        consultar_saldo(conta)
+    elif op == 3:
+        conta = input('\n\nInforme o número da conta: ').strip().upper()
+        realizar_saque(conta)
+    elif op == 4:
+        conta = input('\n\nInforme o número da conta: ').strip().upper()
+        realizar_saque(conta)
+    elif op == 5:
+        sair()
+        break
