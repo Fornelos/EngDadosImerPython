@@ -53,7 +53,7 @@ lista_nomes_dias_impar = []
 lista_dias_par = []
 lista_dias_impar = []
 dia = None
-QTDE_FUNCIONARIOS = 5
+QTDE_FUNCIONARIOS = 30
 
 def verificaDiaJaEscolhido(dia):
     if dia in lista_dias_par or dia in lista_dias_impar:
@@ -109,7 +109,7 @@ print(dict_valorQuadrado)
 
 ######### QUESTAO 5 #########################################
 NUMERO_DE_VOLTAS = 3
-NUMERO_DE_CORREDORES = 2
+NUMERO_DE_CORREDORES = 4
 dict_corredor ={}
 lista_tempo = []
 media_geral = []
@@ -301,7 +301,6 @@ menu_estoque ="""
     5. Calcular valor total do estoque
     6. Sair
     """
-print(estoque_produto)
 while True:
     print(menu_estoque)
     op = int(input('Informe a opção: '))
@@ -321,10 +320,11 @@ while True:
         valor_total_estoque()
     elif op == 6:
         sair()
-    else:
-        pass
+        break
+  
 ############################################################
- 
+    
+######### QUESTAO 9 #########################################
 
 
 
