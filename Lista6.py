@@ -333,7 +333,9 @@ def adicionar_conta(conta):
     else:
         nome_titular = input('Informe o nome do titular  da conta {} :'.format(conta)).strip()
         saldo = float(input('Informe o saldo da conta {} :'.format(conta)).strip())
-        conta_banco[conta] = {'Nome': nome_titular, 'Saldo':saldo}
+        conta_banco[conta] = {}
+        conta_banco.get(conta, {}).update({'Nome': nome_titular})
+        conta_banco.get(conta, {}).update({'Saldo': saldo})
         print('Conta criada com sucesso.')
         sleep()
     return
@@ -341,16 +343,40 @@ def adicionar_conta(conta):
 def verifica_conta(conta):
     print('Conta {} existente, você sera redirecionado ao menu para outras operações'.format(conta))
     sleep()
+    
 
 def realizar_saque(conta):
-    pass
+    if conta in conta_banco:
+        valor_saque = float(input('Informe o valor de deseja sacar da conta {} :'.format(conta)).strip())
+        if valor_saque > retorna_saldo(conta):
+            print('Saldo insuficiente! Refaça a operação!.')
+            sleep()
+        else:
+          valor = retorna_saldo(conta) - valor_saque
+          conta_banco.get(conta, {}).update({'Saldo': valor})
+          print('Saque de R$ {} efetuado com sucesso!'.format(valor_saque))
+          print('você sera redirecionado para o menu incial.')
+          sleep()
+
+def retorna_saldo(conta):
+    saldo = conta_banco.get(conta, {}).get('Saldo')
+    return saldo
 
 def realizar_deposito(conta):
-    pass
+    if conta in conta_banco:
+        valor_deposito = float(input('Informe o valor de deseja depositar na conta {} :'.format(conta)).strip())
+        valor = retorna_saldo(conta) + valor_deposito
+        conta_banco.get(conta, {}).update({'Saldo': valor})
+        print('Deposito de R$ {} efetuado com sucesso!'.format(valor_deposito))
+        print('você sera redirecionado para o menu incial.')
+        sleep()
 
 def consultar_saldo(conta):
-    pass
+    print('Saldo da conta {} é R$: {:.2f}'.format(conta,retorna_saldo(conta)))
+    print('você sera redirecionado para o menu incial.')
+    sleep()
 
+          
 def sair():
     print('Programa finalizado.')
     sleep()
@@ -390,7 +416,9 @@ while True:
         realizar_saque(conta)
     elif op == 4:
         conta = input('\n\nInforme o número da conta: ').strip().upper()
-        realizar_saque(conta)
+        realizar_deposito(conta)
     elif op == 5:
         sair()
         break
+      
+############################################################
