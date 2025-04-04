@@ -3,6 +3,7 @@
 #THIAGO FORNELOS DE ALBUQUERQUE
 ######### QUESTAO 1 #########################################
 import os
+import time
 
 lista_cor = []
 try:
@@ -222,6 +223,72 @@ while True:
     
 ######### QUESTAO 8 #########################################
 estoque_produto = {}
+TEMPO_SLEEP = 2
+def adicionar_produto(nome):
+    if nome in estoque_produto:
+        atualizar_estoque(nome)
+    else:
+        estoque = input('Informe a quantidade de estoque: ').strip()
+        preco_uni = float(input('Informe o preço unitario do {} :'.format(nome)).strip())
+        estoque_produto[nome] = [estoque,preco_uni]
+        print('Produto {} adicionado ao estoque.!'.format(nome))
+        sleep()
+    return
+
+def excluir_produto(nome):
+    valor_removido = estoque_produto.pop(nome, 'não encontrado')
+    if valor_removido == None:
+        print(valor_removido)
+    else:
+        print('{} removido com sucesso!'.format(nome))
+        sleep()
+    return
+
+def atualizar_estoque(nome):
+     if nome in estoque_produto:
+         alterar = input('Produto {} ja existe, deseja atualizar o estoque? [S] ou [N]: '.format(nome)).strip().lower()
+         if alterar == 's':
+            estoque = input('Informe a quantidade de estoque para atualização : ').strip()
+            estoque_produto[nome][0] = estoque
+            print('Estoque de {} atualizado para {} unidades'.format(nome,estoque))
+            sleep()
+     else:
+        inserir = input('Produto {} NÃO existe, deseja inserir no  estoque? [S] ou [N]: '.format(nome)).strip().lower()
+        if inserir == 's':
+            adicionar_produto(nome)
+        else:
+            print('Obrigado!')
+            sleep()
+
+def listar_produtos_estoque():
+   lista = """\n Lista de Produtos em Estoque: \n"""
+   print(lista)
+   for produto, inf in estoque_produto.items():
+       print('Nome: {}'.format(produto))
+       print('Quantidade em Estoque: {}'.format(inf[0]))
+       print('Preço Unitario: {:.2f}'.format(inf[1]))
+
+  
+  
+def valor_total_estoque():
+    total = 0
+    for _, inf in estoque_produto.items():
+       total += float(inf[0]) * float(inf[1])
+       print('Valor total do Estoque: {:.2f}'.format(total))
+      
+def sair():
+    print('Programa finalizado.')
+    sleep()
+    print(estoque_produto)
+
+def limpartela():
+    os.system('cls')
+
+def sleep():
+    time.sleep(TEMPO_SLEEP)
+    limpartela()
+
+
 menu_estoque ="""
     ############################
       CONTROLE DE ESTOQUE v1.0
@@ -234,16 +301,26 @@ menu_estoque ="""
     5. Calcular valor total do estoque
     6. Sair
     """
-
+print(estoque_produto)
 while True:
     print(menu_estoque)
-    op1 = int(input('Informe a opção: '))
+    op = int(input('Informe a opção: '))
+
     if op == 1:
-       pass
+        nome = input('\n\nInforme o nome do produto: ').strip().upper()
+        adicionar_produto(nome)
     elif op == 2:
-        pass
+        nome = input('\n\nInforme o nome do produto: ').strip().upper()
+        excluir_produto(nome)
     elif op == 3:
-        pass
+        nome = input('\n\nInforme o nome do produto: ').strip().upper()
+        atualizar_estoque(nome)
+    elif op == 4:
+        listar_produtos_estoque()
+    elif op == 5:
+        valor_total_estoque()
+    elif op == 6:
+        sair()
     else:
         pass
 ############################################################
