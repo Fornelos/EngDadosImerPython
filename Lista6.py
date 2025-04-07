@@ -48,21 +48,33 @@ except:
 ############################################################
     
 ######### QUESTAO 3 #########################################
-lista_nomes_dias_par = []
-lista_nomes_dias_impar = []
-lista_dias_par = []
-lista_dias_impar = []
+tupla_escala = ([],[])
+tupla_par =([],[])
+tupla_impar =([],[])
 dia = None
 QTDE_FUNCIONARIOS = 30
 
-def verificaDiaJaEscolhido(dia):
-    if dia in lista_dias_par or dia in lista_dias_impar:
+def ordenar_inserir(tupla):
+    for i in range(3):
+        menor_valor = min(tupla[1])
+        indice_dia = tupla[1].index(menor_valor)
+        nome = tupla[0][indice_dia]
+        del tupla[1][indice_dia]
+        if menor_valor % 2 == 0:
+            tupla_par[0].append(nome)
+            tupla_par[1].append(menor_valor)
+        else:
+            tupla_impar[0].append(nome)
+            tupla_impar[1].append(menor_valor)
+
+
+def verificaFuncinarioJaEscolhido(nome):
+    if nome in tupla_escala[0]:
         return False
     else:
         return True
-
-def verificaFuncinarioJaEscolhido(nome):
-    if nome in lista_nomes_dias_par or nome in lista_nomes_dias_impar:
+def verificaDiaJaEscolhido(dia):
+    if dia in tupla_escala[1]:
         return False
     else:
         return True
@@ -83,18 +95,17 @@ try:
                 print('Dia inválido! Digite um dia entre 1 e 30!')
             dia = int(input('Informe do dia de trabalho: ').strip())
 
-        if dia % 2==0:
-           lista_nomes_dias_par.append(nome)
-           lista_dias_par.append(dia)
-        else:
-            lista_nomes_dias_impar.append(nome)
-            lista_dias_impar.append(dia)
-            
+        tupla_escala[0].append(nome)
+        tupla_escala[1].append(dia)
+
+
+    print('Pessoas no plantão ')
+    print((tupla_escala))
+    ordenar_inserir(tupla_escala)
     print('Pessoas no plantão (dias pares):')
-    print((lista_nomes_dias_par,lista_dias_par))
+    print(tupla_par)
     print('Pessoas no plantão (dias ímpares):')
-    print((lista_nomes_dias_impar,lista_dias_impar))
-           
+    print(tupla_impar)
 except:
     print("Erro!")
 ############################################################
